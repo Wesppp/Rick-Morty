@@ -1,0 +1,62 @@
+@use "mixins";
+@use "colors";
+
+.hero-card {
+  @include mixins.flexMix($align: normal, $justify: normal);
+
+  min-width: 400px;
+  max-width: 500px;
+  background-color: colors.$dark-bg1;
+  border-radius: .8rem;
+
+  &__img img {
+    width: 200px;
+    height: 100%;
+    border-top-left-radius: .8rem;
+    border-bottom-left-radius: .8rem;
+  }
+
+  &__desc {
+    @include mixins.flexMix(column, normal, space-around);
+
+    padding: 1rem;
+
+    .desc-title {
+      h2 {
+        letter-spacing: .15rem;
+      }
+
+      .desc-status {
+        @include mixins.flexMix($align: center, $justify: normal, $gap: .2rem);
+
+        font-size: .85rem;
+
+        span {
+          display: inline-block;
+          background-color: colors.$transparent-font;
+          width: .5rem;
+          height: .5rem;
+          border-radius: 50%;
+
+          &.alive {
+            background-color: green;
+          }
+
+          &.dead {
+            background-color: red;
+          }
+
+          &.unknown {
+            background-color: colors.$transparent-font;
+          }
+        }
+      }
+    }
+
+    .desc-location, .desc-gender {
+      small {
+        color: colors.$transparent-font;
+      }
+    }
+  }
+}
