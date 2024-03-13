@@ -10,5 +10,9 @@ export const RICK: Hero = {
   location: {
     name: 'Earth',
     url: 'https://rickandmortyapi.com/api/location/20'
-  }
+  },
+  episode: [
+    'https://rickandmortyapi.com/api/episode/1',
+    'https://rickandmortyapi.com/api/episode/2',
+  ]
 }
