@@ -1,0 +1,15 @@
+@use "mixins";
+@use "colors";
+
+.header {
+  @include mixins.flexMix($justify: space-between);
+
+  padding: 1rem 3rem;
+  background-color: colors.$dark-bg;
+
+  &-links {
+    @include mixins.flexMix($justify: space-between, $gap: 1.5rem);
+
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,16 @@
+@use "colors";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: colors.$rick;
+}
