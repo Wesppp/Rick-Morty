@@ -14,7 +14,11 @@
         {{ hero.status }} - {{ hero.species }}
       </p>
     </div>
-    <p class="desc-location">
+    <p
+      (mouseenter)="getHeroLocation(hero.location.url, hero.id)"
+      tooltipPosition="right"
+      [pTooltip]="locationTooltip"
+      class="desc-location">
       <small>Last known location:</small>
       <br>
       <span>{{ hero.location.name }}</span>
@@ -26,3 +30,8 @@
     </p>
   </div>
 </div>
+<ng-template #locationTooltip>
+  <app-location-tooltip
+    [heroLocation]="heroLocation | async"
+  ></app-location-tooltip>
+</ng-template>
