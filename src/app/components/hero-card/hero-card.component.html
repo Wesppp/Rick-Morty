@@ -28,10 +28,22 @@
       <br>
       <span>{{ hero.gender }}</span>
     </p>
+    <p
+      (mouseenter)="getHeroEpisodes(hero.episode, hero.id)"
+      tooltipPosition="right"
+      [pTooltip]="episodesTooltip"
+      class="desc-episodes">
+      Episodes
+    </p>
   </div>
 </div>
 <ng-template #locationTooltip>
   <app-location-tooltip
     [heroLocation]="heroLocation | async"
   ></app-location-tooltip>
+</ng-template>
+<ng-template #episodesTooltip>
+  <app-episodes-tooltip
+    [episodes]="episodes | async"
+  ></app-episodes-tooltip>
 </ng-template>
