@@ -1,0 +1,27 @@
+<div class="heroes-list max-width-cotainer">
+  <div class="heroes-list__title">
+    <h1>List of heroes</h1>
+  </div>
+    <ul class="list">
+      @if (!store.isHeroesLoading()) {
+        @for(hero of store.heroes(); track hero.id) {
+          <li class="list-item">
+            <app-hero-card
+              [hero]="hero"
+            ></app-hero-card>
+          </li>
+        }
+      } @else {
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <li class="list-item">
+            <app-skeleton-card></app-skeleton-card>
+          </li>
+        }
+      }
+    </ul>
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="store.totalHeroesCount()"
+    (onPageChange)="onPageChange($event)">
+  </p-paginator>
+</div>

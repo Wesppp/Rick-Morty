@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 
 import { Episode } from '@models/episode.interface';
+import { TEXT_SKELETON_VALUES } from '@constants/stub-values';
 
 @Component({
   selector: 'app-episodes-tooltip',
@@ -15,4 +16,6 @@ import { Episode } from '@models/episode.interface';
 })
 export class EpisodesTooltipComponent {
   @Input({ required: true }) public episodes: Episode[] | null = [];
+
+  public textSteletonValues: number[] = TEXT_SKELETON_VALUES;
 }

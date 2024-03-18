@@ -1,0 +1,9 @@
+@use "mixins";
+
+.skeleton-card {
+  @include mixins.flexMix($align: normal, $justify: normal, $gap: 1rem);
+
+  &__text {
+    @include mixins.flexMix(column, normal, space-evenly);
+  }
+}

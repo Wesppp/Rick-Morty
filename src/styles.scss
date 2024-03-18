@@ -1,4 +1,6 @@
 @use "colors";
+@use "mixins";
+@use "constants";
 
 *,
 *::after,
@@ -14,4 +16,29 @@ ul {
 a {
   text-decoration: none;
   color: colors.$rick;
+}
+
+.max-width-cotainer {
+  @include mixins.maxWidthContainer($p-left: 6rem, $p-right: 6rem);
+
+  @media (max-width: constants.$medium-screen) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @media (max-width: constants.$small-medium-screen) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (max-width: constants.$small-screen) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+p-paginator {
+  .p-paginator-element {
+    margin: 0.143rem;
+  }
 }

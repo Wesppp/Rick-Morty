@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component, Input, computed, inject } from '@an
 import { TooltipModule } from 'primeng/tooltip';
 import { toObservable } from '@angular/core/rxjs-interop';
 
-import { RICK } from '@constants/rick-hero-mock';
 import { HeroStatus } from '@enums/hero-status.enum';
 import { Hero } from '@models/hero.interface';
 import { LocationTooltipComponent } from './components/location-tooltip/location-tooltip.component';
@@ -20,7 +19,7 @@ import { EpisodesTooltipComponent } from './components/episodes-tooltip/episodes
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroCardComponent {
-  @Input() public hero: Hero = RICK;
+  @Input({ required: true }) public hero!: Hero;
 
   protected readonly store = inject(HeroesStore);
 
@@ -32,7 +31,7 @@ export class HeroCardComponent {
     this.store.getHeroLocation({ url, heroId });
   }
 
-  public getHeroEpisodes(urls: string[], heroId: number): void {
-    this.store.getHeroEpisodes({ urls, heroId });
+  public getHeroEpisodes(url: string[], heroId: number): void {
+    this.store.getHeroEpisodes({ url, heroId });
   }
 }

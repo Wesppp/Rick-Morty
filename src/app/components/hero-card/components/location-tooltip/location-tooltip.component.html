@@ -5,10 +5,10 @@
     The location is in a <span>{{ heroLocation.dimension }}</span>.
   </div>
 } @else {
-  @for(i of [10,9,10,8,9,10]; track i) {
+  @for(val of textSteletonValues; track val) {
     <p-skeleton
     [style]="{ 'margin': '.5rem 0' }"
-    [width]="i + 'rem'"
+    [width]="val + 'rem'"
     styleClass="mb-2"></p-skeleton>
   }
 }
