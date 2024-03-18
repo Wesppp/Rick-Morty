@@ -1,0 +1,28 @@
+<div class="hero-card">
+  <div class="hero-card__img">
+    <img [src]="hero.image" alt="Hero Card">
+  </div>
+  <div class="hero-card__desc">
+    <div class="desc-title">
+      <h2>{{ hero.name }}</h2>
+      <p class="desc-status">
+        <span [ngClass]="{
+          'alive': hero.status === heroStatus.ALIVE,
+          'unknown': hero.status === heroStatus.UNKNOWN,
+          'dead': hero.status === heroStatus.DEAD
+        }"></span>
+        {{ hero.status }} - {{ hero.species }}
+      </p>
+    </div>
+    <p class="desc-location">
+      <small>Last known location:</small>
+      <br>
+      <span>{{ hero.location.name }}</span>
+    </p>
+    <p class="desc-gender">
+      <small>Gender:</small>
+      <br>
+      <span>{{ hero.gender }}</span>
+    </p>
+  </div>
+</div>
