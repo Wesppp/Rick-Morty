@@ -1,3 +1,5 @@
+@use "colors";
+
 @mixin flexMix($direction: row, $align: center, $justify: center, $gap: 0, $wrap: unset) {
   display: flex;
   flex-direction: $direction;
@@ -7,3 +9,9 @@
   flex-wrap: $wrap;
 }
 
+@mixin cardMix($minw: 400px, $maxw: 500px, $bgcolor: colors.$dark-bg1, $radius: .8rem) {
+  min-width: $minw;
+  max-width: $maxw;
+  background-color: $bgcolor;
+  border-radius: $radius;
+}

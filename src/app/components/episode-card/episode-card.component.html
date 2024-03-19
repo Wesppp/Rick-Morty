@@ -1,0 +1,22 @@
+<div class="episode-card">
+  <div class="episode-card__title">
+    <h2>
+      {{ episode.episode }}
+      <span class="episode-card__name">Episode name: {{ episode.name }}</span>
+    </h2>
+  </div>
+  <div class="episode-card__air-date">
+    <small class="air-date__label">Air date of the episode:</small>
+    <br>
+    <span class="air-date__date">{{ episode.air_date }}</span>
+  </div>
+  <div
+    (mouseenter)="getEpisodeHeroes(episode.characters, episode.id)"
+    [pTooltip]="charactersTooltip"
+    tooltipPosition="right"
+    class="episode-card__characters">
+    Characters
+  </div>
+</div>
+<ng-template #charactersTooltip>
+</ng-template>
