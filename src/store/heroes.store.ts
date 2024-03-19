@@ -3,12 +3,14 @@ import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-import { filter, pipe, switchMap } from 'rxjs';
+import { delay, filter, pipe, switchMap, tap } from 'rxjs';
 
 import { Hero } from '@models/hero.interface';
 import { HeroService } from '@services/hero.service';
 import { HeroLocation } from '@models/location.interface';
 import { Episode } from '@models/episode.interface';
+import { LoadingStore } from './loading.store';
+import { Loadings } from '@enums/loadings.enum';
 
 export interface HeroesState {
   heroes: Hero[];
@@ -25,10 +27,11 @@ const initialState: HeroesState = {
 export const HeroesStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store, heroesService = inject(HeroService)) => ({
+  withMethods((store, heroesService = inject(HeroService), loadStore = inject(LoadingStore)) => ({
     getHeroLocation: rxMethod<{ url: string; heroId: number }>(
       pipe(
         filter(({ heroId }) => !store.allHeroesLocation()[heroId]),
+        tap(() => loadStore.addLoading(Loadings.HEROES_LOADING)),
         switchMap(({ url, heroId }) =>
           heroesService.getHeroLocation(url).pipe(
             tapResponse({
@@ -38,6 +41,7 @@ export const HeroesStore = signalStore(
                 });
               },
               error: console.error,
+              finalize: () => loadStore.removeLoading(Loadings.HEROES_LOADING),
             }),
           ),
         ),

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Signal, computed, inject } from '@angular/core';
 
 import { TooltipModule } from 'primeng/tooltip';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -10,6 +10,9 @@ import { Hero } from '@models/hero.interface';
 import { LocationTooltipComponent } from './components/location-tooltip/location-tooltip.component';
 import { HeroesStore } from '@store/heroes.store';
 import { EpisodesTooltipComponent } from './components/episodes-tooltip/episodes-tooltip.component';
+import { Loadings } from '@enums/loadings.enum';
+import { LoadingStore } from '@store/loading.store';
+import { getLoading } from 'app/utility/getLoading';
 
 @Component({
   selector: 'app-hero-card',
@@ -23,7 +26,7 @@ export class HeroCardComponent {
   @Input() public hero: Hero = RICK;
 
   protected readonly store = inject(HeroesStore);
-
+  
   public heroLocation = toObservable(computed(() => this.store.allHeroesLocation()[this.hero.id]));
   public episodes = toObservable(computed(() => this.store.allHeroesEpisodes()[this.hero.id]));
   protected heroStatus = HeroStatus;
