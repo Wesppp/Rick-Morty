@@ -19,4 +19,7 @@
   </div>
 </div>
 <ng-template #charactersTooltip>
+  <app-characters-tooltip
+    [heroes]="heroes$ | async"
+  ></app-characters-tooltip>
 </ng-template>

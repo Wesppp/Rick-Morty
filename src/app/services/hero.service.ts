@@ -17,7 +17,7 @@ export class HeroService {
   }
 
   public getHeroEpisodes(urls: string[]): Observable<Episode[]> {
-    const req = urls.map(url => this.http.get<Episode>(url));
+    const req = urls.slice(0, 5).map(url => this.http.get<Episode>(url));
 
     return forkJoin<Episode[]>(req);
   }
