@@ -1,0 +1,26 @@
+@use "mixins";
+@use "colors";
+
+.characters-tooltip {
+  &__list {
+    @include mixins.flexMix(column, center, normal, 1rem);
+
+    .list-item {
+      @include mixins.flexMix($align: center, $justify: normal, $gap: 1em);
+
+      &__img {
+        img {
+          height: 50px;
+          width: 50px;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+
+      &__name {
+        color: colors.$rick;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}

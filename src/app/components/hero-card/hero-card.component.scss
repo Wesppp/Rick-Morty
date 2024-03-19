@@ -3,11 +3,7 @@
 
 .hero-card {
   @include mixins.flexMix($align: normal, $justify: normal);
-
-  min-width: 400px;
-  max-width: 500px;
-  background-color: colors.$dark-bg1;
-  border-radius: .8rem;
+  @include mixins.cardMix();
 
   &__img img {
     width: 200px;
@@ -20,6 +16,7 @@
     @include mixins.flexMix(column, normal, space-around);
 
     padding: 1rem;
+    width: 100%;
 
     .desc-title {
       h2 {
@@ -57,6 +54,15 @@
       small {
         color: colors.$transparent-font;
       }
+    }
+
+    .desc-episodes {
+      text-align: right;
+      color: colors.$rick;
+    }
+
+    .desc-location, .desc-episodes {
+      cursor: pointer;
     }
   }
 }

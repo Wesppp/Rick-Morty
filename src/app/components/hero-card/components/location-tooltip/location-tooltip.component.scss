@@ -1,0 +1,9 @@
+@use "colors";
+
+.location {
+  padding: .5rem;
+
+  span {
+    color: colors.$rick;
+  }
+}

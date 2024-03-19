@@ -1,0 +1,37 @@
+@use "mixins";
+@use "colors";
+
+.episode-card {
+  @include mixins.flexMix(column, normal, normal, .8rem);
+  @include mixins.cardMix();
+
+  padding: 1rem;
+
+  &__title {
+    font-size: 1.4rem;
+    color: colors.$rick;
+  }
+
+  &__name {
+    color: #fff;
+    font-weight: 400;
+  }
+
+  &__air-date {
+    .air-date__label {
+      font-size: 1rem;
+      color: colors.$rick;
+    }
+
+    .air-date__date {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__characters {
+    text-align: end;
+    color: colors.$rick;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
