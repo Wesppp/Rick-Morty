@@ -1,4 +1,5 @@
 <div class="characters-tooltip">
+  @if(heroes && heroes.length) {
   <ul class="characters-tooltip__list">
     @for (hero of heroes; track hero.id) {
       <li class="list-item">
@@ -9,8 +10,20 @@
           {{ hero.name }}
         </div>
       </li>
-    } @empty {
-      <span>There are no heroes in this episode...</span>
     }
   </ul>
+  } @else {
+    <ul class="characters-tooltip__list">
+      @for(val of skeletonValues; track val) {
+        <li class="list-item">
+          <div class="list-item__img">
+            <p-skeleton shape="circle" size="3rem" styleClass="mr-2"></p-skeleton>
+          </div>
+          <div class="list-item__name">
+            <p-skeleton width="6rem" styleClass="mb-2"></p-skeleton>
+          </div>
+        </li>
+      }
+    </ul>
+  }
 </div>
