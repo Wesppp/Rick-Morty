@@ -6,6 +6,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { HeroCardComponent } from '@components/hero-card/hero-card.component';
 import { HeroesStore } from '@store/heroes.store';
 import { SkeletonCardComponent } from '@components/skeleton-card/skeleton-card.component';
+import { PAGINATION_ROWS } from '@constants/pagination';
 
 @Component({
   selector: 'app-heroes-list',
@@ -18,7 +19,7 @@ import { SkeletonCardComponent } from '@components/skeleton-card/skeleton-card.c
 export class HeroesListComponent implements OnInit {
   protected readonly store = inject(HeroesStore);
 
-  public rows: number = 20;
+  public rows: number = PAGINATION_ROWS;
   public page: number = 1;
 
   public ngOnInit(): void {
