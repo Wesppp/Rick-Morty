@@ -6,7 +6,7 @@
     <div class="desc-title">
       <h2>{{ hero.name }}</h2>
       <p class="desc-status">
-        <span [ngClass]="{
+        <span class="desc-status-icon" [ngClass]="{
           'alive': hero.status === heroStatus.ALIVE,
           'unknown': hero.status === heroStatus.UNKNOWN,
           'dead': hero.status === heroStatus.DEAD
@@ -14,15 +14,36 @@
         {{ hero.status }} - {{ hero.species }}
       </p>
     </div>
-    <p class="desc-location">
+    <p
+      tooltipPosition="right"
+      [pTooltip]="locationTooltip"
+      class="desc-location"
+      (mouseenter)="getHeroLocation(hero.location.url, hero.id)">
       <small>Last known location:</small>
       <br>
-      <span>{{ hero.location.name }}</span>
+      <span class="desc-location-name">{{ hero.location.name }}</span>
     </p>
     <p class="desc-gender">
       <small>Gender:</small>
       <br>
-      <span>{{ hero.gender }}</span>
+      <span class="desc-gender-name">{{ hero.gender }}</span>
+    </p>
+    <p
+      tooltipPosition="right"
+      [pTooltip]="episodesTooltip"
+      class="desc-episodes"
+      (mouseenter)="getHeroEpisodes(hero.episode, hero.id)">
+      Episodes
     </p>
   </div>
 </div>
+<ng-template #locationTooltip>
+  <app-location-tooltip
+    [heroLocation]="heroLocation | async"
+  ></app-location-tooltip>
+</ng-template>
+<ng-template #episodesTooltip>
+  <app-episodes-tooltip
+    [episodes]="episodes | async"
+  ></app-episodes-tooltip>
+</ng-template>

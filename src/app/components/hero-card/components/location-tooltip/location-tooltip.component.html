@@ -1,0 +1,14 @@
+@if(heroLocation) {
+  <div class="location">
+    Location <span>{{ heroLocation.name }}</span>
+    (type of location is <span>{{ heroLocation.type }}</span>).
+    The location is in a <span>{{ heroLocation.dimension }}</span>.
+  </div>
+} @else {
+  @for(val of textSteletonValues; track val) {
+    <p-skeleton
+    [style]="{ 'margin': '.5rem 0' }"
+    [width]="val + 'rem'"
+    styleClass="mb-2"></p-skeleton>
+  }
+}

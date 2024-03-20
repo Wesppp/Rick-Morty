@@ -1,0 +1,8 @@
+<div class="skeleton-card">
+  <p-skeleton size="13rem"></p-skeleton>
+  <div class="skeleton-card__text">
+    @for (val of cardSkeletonValues; track val) {
+      <p-skeleton [width]="val + 'rem'" styleClass="mb-2"></p-skeleton>
+    }
+  </div>
+</div>

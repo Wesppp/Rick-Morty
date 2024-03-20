@@ -1,22 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, computed, inject } from '@angular/core';
 
-import { RICK } from '@constants/rick-hero-mock';
+import { TooltipModule } from 'primeng/tooltip';
+import { toObservable } from '@angular/core/rxjs-interop';
+
 import { HeroStatus } from '@enums/hero-status.enum';
 import { Hero } from '@models/hero.interface';
+import { LocationTooltipComponent } from './components/location-tooltip/location-tooltip.component';
+import { HeroesStore } from '@store/heroes.store';
+import { EpisodesTooltipComponent } from './components/episodes-tooltip/episodes-tooltip.component';
 
 @Component({
   selector: 'app-hero-card',
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule, TooltipModule, LocationTooltipComponent, EpisodesTooltipComponent],
   templateUrl: './hero-card.component.html',
   styleUrl: './hero-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroCardComponent {
-  @Input() public hero: Hero = RICK;
+  @Input({ required: true }) public hero!: Hero;
 
+  protected readonly store = inject(HeroesStore);
+
+  public heroLocation = toObservable(computed(() => this.store.allHeroesLocation()[this.hero.id]));
+  public episodes = toObservable(computed(() => this.store.allHeroesEpisodes()[this.hero.id]));
   protected heroStatus = HeroStatus;
+
+  public getHeroLocation(url: string, heroId: number): void {
+    this.store.getHeroLocation({ url, heroId });
+  }
+
+  public getHeroEpisodes(url: string[], heroId: number): void {
+    this.store.getHeroEpisodes({ url, heroId });
+  }
 }

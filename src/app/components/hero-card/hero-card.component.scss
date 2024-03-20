@@ -20,6 +20,7 @@
     @include mixins.flexMix(column, normal, space-around);
 
     padding: 1rem;
+    width: 100%;
 
     .desc-title {
       h2 {
@@ -31,7 +32,7 @@
 
         font-size: .85rem;
 
-        span {
+        &-icon {
           display: inline-block;
           background-color: colors.$transparent-font;
           width: .5rem;
@@ -57,6 +58,15 @@
       small {
         color: colors.$transparent-font;
       }
+    }
+
+    .desc-episodes {
+      text-align: right;
+      color: colors.$rick;
+    }
+
+    .desc-location, .desc-episodes {
+      cursor: pointer;
     }
   }
 }

@@ -1,0 +1,22 @@
+@if(episodes && episodes.length) {
+  <ul class="episodes">
+    @for(episode of episodes; track episode.id) {
+      <li class="episode">
+        <div class="episode-title">
+          <h3>{{ episode.name }}<span>(air date: {{ episode.air_date }})</span></h3>
+        </div>
+        <p class="episode-number">
+          Number of episode:
+          <span>{{ episode.episode }}</span>
+        </p>
+      </li>
+    }
+  </ul>
+} @else {
+  @for(val of textSteletonValues; track val) {
+    <p-skeleton
+    [style]="{ 'margin': '.5rem 0' }"
+    [width]="val + 'rem'"
+    styleClass="mb-2"></p-skeleton>
+  }
+}
